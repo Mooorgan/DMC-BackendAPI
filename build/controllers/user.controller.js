@@ -28,7 +28,6 @@ const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             .json((0, controller_helper_functions_1.sendResponse)(controller_helper_functions_1.SUCCESS, 'Signup successful,User is created', userCreated));
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Invalid authentication credentials');
     }
 });

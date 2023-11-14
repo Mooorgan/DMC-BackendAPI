@@ -28,7 +28,6 @@ export const createUser = async (
         sendResponse(SUCCESS, 'Signup successful,User is created', userCreated)
       );
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Invalid authentication credentials');
   }
 };

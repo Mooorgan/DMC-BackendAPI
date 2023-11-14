@@ -25,7 +25,6 @@ export const createTask = async (
       .status(201)
       .json(sendResponse(SUCCESS, 'Task successfully created', createdTask));
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Creating a task failed.');
   }
 };
@@ -48,7 +47,6 @@ export const updateTask = async (
       { _id: req.params.id, creator: req.userData.userId },
       task
     );
-    console.log(updatedResult);
     if (updatedResult.matchedCount > 0) {
       res.status(200).json(sendResponse(SUCCESS, 'Task successfully updated'));
     } else {
@@ -57,7 +55,6 @@ export const updateTask = async (
         .json(sendResponse(ERROR, 'Not authorized to update task'));
     }
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Updating a task failed.');
   }
 };
@@ -88,7 +85,6 @@ export const getTasks = async (
         sendResponse(SUCCESS, 'Tasks successfully fetched', responseToBeSent)
       );
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Fetching all tasks failed.');
   }
 };
@@ -116,7 +112,6 @@ export const getTask = async (
         .json(sendResponse(ERROR, 'Specified single task not found'));
     }
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Fetching specified single task failed.');
   }
 };
@@ -148,7 +143,6 @@ export const deleteTask = async (
         );
     }
   } catch (err) {
-    console.log(err);
     catchError(next, err, 500, 'Deleting specified single task failed.');
   }
 };

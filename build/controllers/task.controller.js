@@ -27,7 +27,6 @@ const createTask = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             .json((0, controller_helper_functions_1.sendResponse)(controller_helper_functions_1.SUCCESS, 'Task successfully created', createdTask));
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Creating a task failed.');
     }
 });
@@ -42,7 +41,6 @@ const updateTask = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     };
     try {
         const updatedResult = yield task_model_1.Task.updateOne({ _id: req.params.id, creator: req.userData.userId }, task);
-        console.log(updatedResult);
         if (updatedResult.matchedCount > 0) {
             res.status(200).json((0, controller_helper_functions_1.sendResponse)(controller_helper_functions_1.SUCCESS, 'Task successfully updated'));
         }
@@ -53,7 +51,6 @@ const updateTask = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Updating a task failed.');
     }
 });
@@ -79,7 +76,6 @@ const getTasks = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
             .json((0, controller_helper_functions_1.sendResponse)(controller_helper_functions_1.SUCCESS, 'Tasks successfully fetched', responseToBeSent));
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Fetching all tasks failed.');
     }
 });
@@ -99,7 +95,6 @@ const getTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
         }
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Fetching specified single task failed.');
     }
 });
@@ -122,7 +117,6 @@ const deleteTask = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     catch (err) {
-        console.log(err);
         (0, controller_helper_functions_1.catchError)(next, err, 500, 'Deleting specified single task failed.');
     }
 });
