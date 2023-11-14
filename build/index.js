@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -20,22 +21,22 @@ mongoose_1.default
     .catch((err) => {
     console.log('Connection failed');
 });
-const app = (0, express_1.default)();
+exports.app = (0, express_1.default)();
 if (process.env.NODE_ENV === 'development') {
-    app.use((0, morgan_1.default)('dev'));
+    exports.app.use((0, morgan_1.default)('dev'));
 }
-app.use((req, res, next) => {
+exports.app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,PUT,DELETE,OPTIONS');
     next();
 });
-app.use(express_1.default.json());
-app.use('/api/task', task_routes_1.taskRoutes);
-app.use('/api/user', user_routes_1.userRoutes);
-app.use(error_controller_1.get404);
-app.use(error_controller_1.get500);
+exports.app.use(express_1.default.json());
+exports.app.use('/api/task', task_routes_1.taskRoutes);
+exports.app.use('/api/user', user_routes_1.userRoutes);
+exports.app.use(error_controller_1.get404);
+exports.app.use(error_controller_1.get500);
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+exports.app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 });

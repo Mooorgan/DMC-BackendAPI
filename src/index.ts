@@ -22,7 +22,7 @@ mongoose
     console.log('Connection failed');
   });
 
-const app = express();
+export const app = express();
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
